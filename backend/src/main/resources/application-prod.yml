@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/gerenciador-hotel-spring}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/aurora_resort}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
     password: ${SPRING_DATASOURCE_PASSWORD:1234567}
     driver-class-name: org.postgresql.Driver

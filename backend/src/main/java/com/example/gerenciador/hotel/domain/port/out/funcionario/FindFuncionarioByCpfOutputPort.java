@@ -1,8 +1,0 @@
-package com.example.gerenciador.hotel.domain.port.out.funcionario;
-
-import com.example.gerenciador.hotel.domain.model.Funcionario;
-import java.util.Optional;
-
-public interface FindFuncionarioByCpfOutputPort {
-    Optional<Funcionario> findByCpf(String cpf);
-}

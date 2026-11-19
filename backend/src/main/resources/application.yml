@@ -2,4 +2,4 @@ spring:
   profiles:
     active: dev
   application:
-    name: gerenciador-hotel-spring
+    name: aurora-resort
