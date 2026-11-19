@@ -1,6 +1,6 @@
-# Hotel Manager
+# Aurora Resort
 
-Sistema para gestão e reservas voltado para a hotelaria de experiência (hotel/resort), combinando operação administrativa consistente e portal público com busca semântica em linguagem natural.
+Plataforma de gestão e reservas voltada para a hotelaria de experiência (Aurora Resort), combinando operação administrativa consistente e portal público com busca semântica em linguagem natural.
 
 > **Status:** **Em Desenvolvimento Ativo**
 

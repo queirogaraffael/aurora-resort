@@ -6,7 +6,7 @@ Este documento consolida o propósito de negócio, os módulos do sistema e a es
 
 ## 1. Visão do Produto
 
-O **Hotel Manager** é uma solução completa para gestão e reservas voltada para a hotelaria de experiência (hotel/resort). 
+O **Aurora Resort** é uma plataforma integrada de gestão e reservas voltada para a hotelaria de experiência. 
 
 O sistema foi desenhado para atender dois pilares essenciais:
 
