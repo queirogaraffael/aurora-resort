@@ -16,3 +16,4 @@ api:
     token:
       secret: ${JWT_SECRET:my-test-secret-key-that-is-long-enough-for-hmac-sha-256}
       expiration: 2
+      issuer: ${JWT_ISSUER:gerenciador-hotel-test}

@@ -1,0 +1,9 @@
+.gradle
+build
+bin
+.bin
+.idea
+*.iml
+.vscode
+.git
+.gitignore
