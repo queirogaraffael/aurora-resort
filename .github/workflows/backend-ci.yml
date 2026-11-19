@@ -1,0 +1,38 @@
+name: Backend CI - Build e Testes
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-test:
+    name: Compilação e Testes Automatizados (Java 17 - Gradle)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17 (Eclipse Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Conceder permissão de execução ao Gradle Wrapper
+        run: chmod +x backend/gradlew
+
+      - name: Validar Compilação do Backend
+        working-directory: ./backend
+        run: ./gradlew compileJava compileTestJava --no-daemon
+
+      - name: Executar Suíte de Testes
+        working-directory: ./backend
+        run: ./gradlew test --no-daemon
