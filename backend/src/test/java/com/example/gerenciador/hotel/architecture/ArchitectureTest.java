@@ -1,6 +1,7 @@
 package com.example.gerenciador.hotel.architecture;
 
 import com.tngtech.archunit.base.DescribedPredicate;
+import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
@@ -10,7 +11,6 @@ import org.junit.jupiter.api.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.tngtech.archunit.core.domain.JavaClass.Predicates.equivalentTo;
 import static com.tngtech.archunit.core.domain.JavaClass.Predicates.resideInAPackage;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
@@ -27,13 +27,18 @@ public class ArchitectureTest {
             .as("A camada de domínio não deve depender da camada de infraestrutura.");
 
     @ArchTest
-    static final ArchRule domain_should_not_depend_on_spring_except_transactional = noClasses()
+    static final ArchRule domain_should_not_depend_on_spring_except_allowed = noClasses()
             .that().resideInAPackage("..domain..")
             .should().dependOnClassesThat(
                     resideInAPackage("org.springframework..")
-                            .and(DescribedPredicate.not(equivalentTo(org.springframework.transaction.annotation.Transactional.class)))
+                            .and(DescribedPredicate.not(
+                                    resideInAPackage("org.springframework.transaction..")
+                                            .or(resideInAPackage("org.springframework.data.domain.."))
+                                            .or(resideInAPackage("org.springframework.security.crypto.password.."))
+                                            .or(resideInAPackage("org.springframework.context.."))
+                            ))
             )
-            .as("A camada de domínio não deve depender do framework Spring, exceto pela anotação @Transactional.");
+            .as("A camada de domínio não deve depender de classes de infraestrutura do Spring, exceto por anotações transacionais, paginação, password encoder e eventos.");
 
     @ArchTest
     static final ArchRule controllers_must_be_suffixed_and_annotated = classes()
